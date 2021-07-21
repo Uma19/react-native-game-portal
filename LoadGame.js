@@ -36,13 +36,12 @@ const LoadGame = (props) => {
 
   const onMessageReceived = (gameData) => {
     // call method to save this data along with childId sessionId and gameDetails in database
+    alert(gameData);
     const gameDetails = JSON.parse(gameData)
     if (gameDetails.home == 1) {
       props.navigation.navigate("GetStartedScreen");
     }
   }
-
-  console.log("url ", url);
 
   return (
     <WebView

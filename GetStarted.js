@@ -11,8 +11,8 @@ import {
 import gameDownloader from "./gameDownloader";
 import RNFS from "react-native-fs";
 import { gameDetails } from "./assets/GameDetails";
+// import NetInfo from "@react-native-community/netinfo";
 import Orientation from 'react-native-orientation';
-import NetInfo from "@react-native-community/netinfo";
 
 export default function GetStarted(props) {
   const [navigation] = useState(props.navigation);
@@ -24,21 +24,21 @@ export default function GetStarted(props) {
 
   const [isOffline, setOfflineStatus] = useState(false);
   
-  useEffect(() => {
-    const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
-      console.log(
-        'Connection type: ' + 
-         state.type + 
-        ', Is connected?: ' + 
-         state.isConnected);
-      const offline = !(state.isConnected && state.isInternetReachable);
-      setOfflineStatus(offline);
-    });
+  // useEffect(() => {
+  //   const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
+  //     alert(
+  //       'Connection type: ' + 
+  //        state.type + 
+  //       ', Is connected?: ' + 
+  //        state.isConnected);
+  //     const offline = !(state.isConnected && state.isInternetReachable);
+  //     setOfflineStatus(offline);
+  //   });
   
-   console.log("offline mode started ", isOffline)
+  //  console.log("offline mode started ", isOffline)
   
-    return () => removeNetInfoSubscription();
-  }, []);
+  //   return () => removeNetInfoSubscription();
+  // }, []);
 
 
   useEffect(() => {
@@ -91,7 +91,8 @@ export default function GetStarted(props) {
 
   return (
     <View style={styles.container}>
-      <StatusBar hidden={true} />
+       <StatusBar
+        hidden={true} />
       <Text style={styles.textStyle}>Game Portal</Text>
 
       <View style={styles.jsonContainer}>
@@ -162,11 +163,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#FEF9E7",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10
+    padding: 20
   },
   jsonContainer: {
     display: "flex",
     padding: 10,
+    paddingLeft: 20
   },
   errorStyle: {
     color: "red",
@@ -186,17 +188,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   textInput: {
-    width: 700,
+    width: 670,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
     borderRadius: 100,
     borderColor: "grey",
-    paddingLeft: 10,
+    paddingLeft: 20,
+    marginLeft: 10
   },
   jsonTextInput: {
-    width: 700,
+    width: 650,
     height: 200,
     justifyContent: "center",
     alignItems: "center",
